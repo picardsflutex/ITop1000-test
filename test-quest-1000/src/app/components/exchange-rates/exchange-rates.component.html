@@ -1,0 +1,29 @@
+<section class="exchange-rates">
+  <div class="exchange-rates__container container">
+    <div action="" class="exchange-rates__inner">
+      <h2 class="exchange-rates__title">Exchange rates</h2>
+      <div class="exchange-rates__form">
+        <div class="exchange-rates__item exchange-rates__item-from">
+          <input min = "0" value="{{exchangeValue1}}" type="number" [(ngModel)]="exchangeValue1" (change)="onChangeFrom()" class="exchange-rates__input" placeholder="100">
+          <label for="" class="exchange-rates__label">From:</label>
+          <select
+            name="From" id="from" class="exchange-rates__select" (change)="onChangeFrom()" [ngModel]="selectedRate1" (ngModelChange)="onChangeRate1($event)">
+            <option class="exchange-rates__option" [ngValue]="1">Euro</option>
+            <option class="exchange-rates__option" [ngValue]="2">USA Dollar</option>
+            <option class="exchange-rates__option" [ngValue]="3">Ukrainian hryvnia</option>
+          </select>
+        </div>
+        <div class="exchange-rates__icon"></div>
+        <div class="exchange-rates__item exchange-rates__item-to">
+          <input min = "0" value="{{exchangeValue2}}" type="number" [(ngModel)]="exchangeValue2" (change)="onChangeTo()" class="exchange-rates__input" placeholder="100">
+          <label for="" class="exchange-rates__label">To:</label>
+          <select name="to" id="to" class="exchange-rates__select" (change)="onChangeFrom()" [ngModel]="selectedRate2" (ngModelChange)="onChangeRate2($event)">
+            <option class="exchange-rates__option" [ngValue]="1">Euro</option>
+            <option class="exchange-rates__option" [ngValue]="2">USA Dollar</option>
+            <option class="exchange-rates__option" [ngValue]="3">Ukrainian hryvnia</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

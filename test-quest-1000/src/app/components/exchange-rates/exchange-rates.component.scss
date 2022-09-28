@@ -1,0 +1,58 @@
+.exchange-rates{
+  &__inner{
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+  }
+  &__title{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  &__icon{
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+    background-color: #3563E9;
+    background-image: url('../../imgs/swap.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+    transform: rotate(90deg);
+  }
+  &__form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__label{
+    margin: 10px 0;
+  }
+  &__input{
+    
+    border-radius: 15px;
+    border: 1px solid;
+    padding: 5px 15px;
+    outline-color: #3563E9;
+    outline-offset: 1px;
+  }
+  &__select{
+    border-radius: 15px;
+    border: 1px solid;
+    padding: 5px 15px;
+    outline-color: #3563E9;
+    outline-offset: 1px;
+    position: relative;
+  }
+  &__select *{
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,31 @@
+.header{
+  width: 100vw;
+  background-color: #3563E9;
+  padding: 20px 10px;
+
+  color: #fff;
+  &__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo{
+    font-family: 'Philosopher', sans-serif;
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    &-italic{
+      margin-top: 2px;
+      font-style: normal;
+    }
+  }
+  &__btn{
+    margin-left: 20px;
+    padding: 3px 0;
+
+    color: #fff;
+    &.active{
+      border-bottom: 2px solid;
+    }
+  }
+}
