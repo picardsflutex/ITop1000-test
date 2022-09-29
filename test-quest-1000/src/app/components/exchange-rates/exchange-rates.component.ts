@@ -9,44 +9,33 @@ import { ExchangesService } from 'src/app/services/exchanges.service';
 export class ExchangeRatesComponent implements OnInit {
   constructor(private exchangeServise: ExchangesService) { }
   onChangeFrom() {
-    this.exchangeValue2 = parseFloat((this.exchangeValue1 * this.exchangeRateMain).toFixed(5))
+    this.exchangeValue2 = parseFloat((this.exchangeValue1 * this.exchangeRates[0]).toFixed(5))
   }
   onChangeTo() {
-    this.exchangeValue1 = parseFloat((this.exchangeValue2 / this.exchangeRateMain).toFixed(5))
+    this.exchangeValue1 = parseFloat((this.exchangeValue2 / this.exchangeRates[0]).toFixed(5))
   }
   onChangeRate1(newValue: string) {
-    console.log(newValue)
-    console.log(this.selectedRate1)
-    this.setRate(newValue, this.selectedRate2)
-    console.log(this.exchangeRateMain)
     this.selectedRate1 = newValue;
+    this.setRate(this.selectedRate1, this.selectedRate2)
   }
   onChangeRate2(newValue: string) {
-    console.log(newValue)
-    console.log(this.selectedRate1)
-    this.setRate(newValue, this.selectedRate1)
-    console.log(this.exchangeRateMain)
     this.selectedRate2 = newValue;
+    this.setRate(this.selectedRate1, this.selectedRate2)
   }
-  setRate(newValue: string, oldValue: string){
-    if(newValue == oldValue) this.exchangeRateMain = 1;
-    else if(newValue == '1' && oldValue == '3' || newValue == '3' && oldValue == '1') this.exchangeRateMain = this.exchangeRateUAH;
-    else if(newValue == '2' && oldValue == '1' || newValue == '1' && oldValue == '2') this.exchangeRateMain = this.exchangeRateUSD;
-    else if(newValue == '2' && oldValue == '3' || newValue == '3' && oldValue == '2') this.exchangeRateMain = this.exchangeRateUAH / this.exchangeRateUSD;
+  setRate(value1: string, value2: string){
+    if(value1 == value2) this.exchangeRates[0] = 1;
+    if(parseInt(value1) > parseInt(value2)) this.exchangeRates[0] = this.exchangeRates[parseInt(value2)] / this.exchangeRates[parseInt(value1)]
+    if(parseInt(value1) < parseInt(value2)) this.exchangeRates[0] = 1 / this.exchangeRates[parseInt(value1)] * this.exchangeRates[parseInt(value2)]
   }
+  exchangeRates : number[] = []
   exchangeValue1 = 1
-  exchangeRateMain = 1
-  exchangeRateUSD = 0.9627
-  exchangeRateUAH = 35.825523
-  exchangeValue2 = this.exchangeValue1 * this.exchangeRateMain
+  exchangeValue2 = this.exchangeValue1 * this.exchangeRates[0] | 1
   selectedRate1 = '1'
   selectedRate2 = '1'
   ngOnInit(): void {
     this.exchangeServise.getExchanges().subscribe(exchange => {
-      this.exchangeRateMain = exchange.rates.USD
-      this.exchangeRateUSD = exchange.rates.USD
-      this.exchangeRateUAH = exchange.rates.UAH
+      this.exchangeRates = this.exchangeRates.concat([1,1], Object.values(exchange.rates))
+      console.log(this.exchangeRates)
     })
   }
-
 }
